@@ -1,0 +1,12 @@
+<form [formGroup]="createUserForm" class="form-content">
+    <div class="container">
+        <h2>{{title}}</h2>
+        <label for="firstname"><b>First Name</b></label>
+        <input type="text" placeholder="Enter first name" name="firstname" formControlName="firstname" required>
+        <label for="lastname"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter last name" name="lastname" formControlName="lastname" required>
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter email" name="email" formControlName="email" required>
+        <button type="submit" [disabled]="createUserForm.invalid" (click)="onSubmit()">Submit</button>
+    </div>
+</form>
