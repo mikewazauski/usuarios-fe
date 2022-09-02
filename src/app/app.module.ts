@@ -10,13 +10,17 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UserFormComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -17,8 +17,10 @@ export class UsersComponent implements OnInit {
   user: User;
   users: User[];
   showUsers: boolean;
+  spinner: boolean;
 
   ngOnInit() {
+    this.spinner = true;
     this.user = null;
     this.users = null;
     this.showUsers = false;
@@ -27,6 +29,7 @@ export class UsersComponent implements OnInit {
       (data: User[]) => {
         this.showUsers = true;
         this.users = data;
+        this.spinner = false;
       },
       (e: HttpErrorResponse) => {
         console.error(e);
@@ -35,16 +38,18 @@ export class UsersComponent implements OnInit {
 
   }
 
-  getCurrentUser(u: User){
+  getCurrentUser(u: User) {
     this.user = u;
     this.showUsers = !this.showUsers;
   }
 
   delete(u: User) {
+    this.spinner = true;
     this.service.deleteUser(u).subscribe(
       () => {
         const indexOf = this.users.indexOf(u);
         this.users.splice(indexOf, 1);
+        this.spinner = false;
       },
       (e: HttpErrorResponse) => {
         console.error(e);
@@ -53,11 +58,14 @@ export class UsersComponent implements OnInit {
   }
 
   edit(u: User) {
+    this.spinner = true;
+
     this.service.updateUser(u).subscribe(
       () => {
         const index: number = this.users.findIndex(x => x.id === u.id);
         this.users[index] = u;
         this.showUsers = true;
+        this.spinner = false;
       },
       (e: HttpErrorResponse) => {
         console.error(e);

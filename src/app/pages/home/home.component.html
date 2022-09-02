@@ -1,1 +1,2 @@
-<app-user-form [title]="'Create user'" [user]="user" (outputUser)="create($event)"></app-user-form>
+<app-spinner *ngIf="spinner"></app-spinner>
+<app-user-form *ngIf="!spinner" [title]="'Create user'" [user]="user" (outputUser)="create($event)"></app-user-form>

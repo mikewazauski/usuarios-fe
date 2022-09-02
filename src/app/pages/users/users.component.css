@@ -26,7 +26,7 @@ table tr:nth-child(even) {
     background-color: #ffffff;
 }
 
-.button-size{
+.button-size {
     width: 160px;
     margin: 5px;
 }

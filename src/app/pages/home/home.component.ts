@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
 
   title: string;
   user: User;
-  users: User[];
   flagCreate: boolean;
   flagUpdate: boolean;
   showUsers: boolean;
+  spinner: boolean;
 
   constructor(private router: Router, private service: ApiService) {
   }
@@ -26,25 +26,15 @@ export class HomeComponent implements OnInit {
     this.flagCreate = true;
     this.flagUpdate = false;
     this.showUsers = false;
-
-    this.service.getUsers().subscribe(
-      (data: User[]) => {
-        this.users = data;
-      },
-      (e: HttpErrorResponse) => {
-        console.error(e);
-      }
-    );
   }
 
   create(u: User) {
     //API call to create user then redirect to users table
+    this.spinner = true;
     this.service.addUser(u).subscribe(
       () => {
-        this.users.push(u);
-        this.router.navigate(['/Users'], {
-          state: { users: this.users }
-        });
+        this.router.navigate(['/Users']);
+        this.spinner = false;
       },
       (e: HttpErrorResponse) => {
         console.error(e);
